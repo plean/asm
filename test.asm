@@ -5,7 +5,7 @@ len:		equ $-msg		; "$" means "here"
 char:		db 'a'
 
 	SECTION .text		; code section
-	global my_putchar	; make label available to linker
+	global my_strlen	; make label available to linker
 
 helloworld:
 	;;  write(1, message, len);
@@ -36,3 +36,11 @@ my_putchar:
 	ret
 	
 
+my_strlen:
+	mov	rax, -1		; set the return value at -1
+
+loop:
+	inc	rax		; increment rax
+	cmp	byte [rdi + rax], 0	; test if rax element of rdi if not equal to 0
+	jne	loop		; if not loop
+	ret			; else return rax

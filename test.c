@@ -1,9 +1,10 @@
+#include <stdio.h>
+
 int	my_putchar(char);
+int	my_strlen(char *);
 
 int	main(void)
 {
-  my_putchar('s');
-  my_putchar('l');
-  my_putchar('t');
-  my_putchar(10);
+  printf("%d\n", my_strlen("chaine de 26 caractères.\n"));
+  return (0);
 }
