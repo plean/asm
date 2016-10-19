@@ -5,7 +5,7 @@ len:		equ $-msg		; "$" means "here"
 char:		db 'a'
 
 	SECTION .text		; code section
-	global my_strlen	; make label available to linker
+	global my_putstr	; make label available to linker
 
 helloworld:
 	;;  write(1, message, len);
@@ -32,7 +32,7 @@ my_putchar:
 	mov     rdi, 1		; file handle 1 is stdout
 	mov     rdx, 1		; number of bytes
 	syscall			; invoke operating system to do the write
-	pop	rdi		; restore rsp
+	pop	rdi		; restore the stack
 	ret
 	
 
@@ -44,3 +44,14 @@ loop:
 	cmp	byte [rdi + rax], 0	; test if rax element of rdi if not equal to 0
 	jne	loop		; if not loop
 	ret			; else return rax
+
+
+my_putstr:
+	call	my_strlen  	; will return the size of rd1 (1st parameter) on rax
+	mov     rdx, rax	; number of bytes to write
+	mov	rsi, rdi	; 
+	mov     rax, 1		; system call 1 is write
+	mov     rdi, 1		; file handle 1 is stdout
+	syscall			; invoke operating system to do the write
+	ret
+
