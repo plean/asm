@@ -3,7 +3,7 @@ CC		:= gcc
 RM		:= rm -f
 
 
-NASMFLAGS	+= -f elf64
+NASMFLAGS	+= -f elf64 -g -F dwarf
 
 CFLAGS  	+= -W -Wall -Wextra
 #CFLAGS		+= -lmy

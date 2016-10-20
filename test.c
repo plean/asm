@@ -3,9 +3,12 @@
 int	my_putchar(char);
 int	my_strlen(char *);
 int	my_putstr(char *);
+int     my_putnbr(int);
 
 int	main(void)
 {
-  my_putstr("chaine de 26 caractères.\n");
+  printf(" : %d\n", my_putnbr(10));
+  printf(" : %d\n", my_putnbr(-10));
+  printf(" : %d\n", my_putnbr(876));
   return (0);
 }
