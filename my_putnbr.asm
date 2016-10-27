@@ -15,7 +15,7 @@ _initialize_rax:
 ;;;  while loop -> while (nb)
 _while_nb:
 	cmp     edi, 0	; compare di and 0
-	je      _aff_number ; if di equal 0 jump to _return
+	je      _save_rax ; if di equal 0 jump to _save_rax
 	inc     eax ; increment ax for each number print
 	push    rax	; save ax for the next operation
 ;;;  divide rdi by 10 and get the rest
@@ -31,15 +31,20 @@ _while_nb:
 	pop     rax	; restore ax
 	push    rdx	; push unite number on the stack
 	jmp     _while_nb ; recall the loop
+_save_rax:
+	push    rax	; store nb of bytes red
 _aff_number:
 	cmp     eax, 0	; compare ax and 0
 	je      _return	; if ax equal 0 goto return
 	;;  else
 	dec     eax	; decrement ax
-	pop     rdi	;
+	pop	r10	; stock nb of bytes red (final return value)
+	pop     rdi	; get number to print
+	push    r10	; push nb of bytes red (final return value)
 	push    rax	; save ax
 	call    my_putchar ;
 	pop     rax	; restore ax
 	jmp     _aff_number ; loop
 _return:
-	        ret		; return ax
+	pop     rax	; restore rax (final return value)
+	ret	; return ax  
