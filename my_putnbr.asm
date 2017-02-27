@@ -1,9 +1,10 @@
+	extern my_putchar
 	global my_putnbr
 
 my_putnbr:
 ;;;  if (nb < 0)
 	cmp     edi, 0	; compare di (first argument) and 0
-	jnl     _initialize_rax ; if di below 0 jump to _while_nb
+	jnl     _initialize_rax ; if di below 0 jump to _initalize_rax
 	;;  else
 	push    rdi	; save di
 	mov     edi, '-' ; put '-' on di
@@ -11,7 +12,7 @@ my_putnbr:
 	pop     rdi	; restore di
 	neg     edi	; change the sign of di
 _initialize_rax:
-	xor     eax, eax ; initialize the return value
+	xor     rax, rax ; initialize the return value
 ;;;  while loop -> while (nb)
 _while_nb:
 	cmp     edi, 0	; compare di and 0
@@ -47,4 +48,4 @@ _aff_number:
 	jmp     _aff_number ; loop
 _return:
 	pop     rax	; restore rax (final return value)
-	ret	; return ax  
+	ret	; return ax

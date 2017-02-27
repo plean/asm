@@ -1,3 +1,4 @@
+	extern	my_strlen
 	global	my_putstr
 	
 my_putstr:

@@ -11,9 +11,10 @@ CFLAGS		+= -I./include/ -L./lib/
 
 NAME		:= test
 
-SRCS		:= test.asm
+SRCS		:= my_putnbr.asm \
+		   my_putchar.asm
 
-MAIN		:= test.c
+MAIN		:= main.c
 
 OBJS		:= $(SRCS:.asm=.o)
 
