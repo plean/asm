@@ -1,7 +1,7 @@
 	global my_putchar	; make label available to linker
 
 my_putchar:
-	
+
 	push	rdi		; push rdi (argument 1) on top of the stack
 	mov	rsi, rsp	; rsp is pointing on rdi (1st argument)
 	mov     rax, 1		; system call 1 is write
