@@ -11,9 +11,11 @@ CFLAGS		+= -I./include/ -L./lib/
 
 NAME		:= test
 
-SRCS		:= my_putnbr.asm \
-		my_putchar.asm \
-		my_strcmp.asm
+SRCS		:= putnbr.asm \
+		putchar.asm \
+		strlen.asm \
+		strcmp.asm \
+		rindex.asm
 
 MAIN		:= main.c
 

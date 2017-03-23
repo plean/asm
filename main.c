@@ -2,19 +2,18 @@
 #include <stdio.h>
 
 int	my_putchar(char);
-int	my_strlen(char *);
-int	my_putstr(char *);
+int	my_strlen(const char *);
+int	my_putstr(const char *);
 int     my_putnbr(int);
-int     my_strcmp(char *, char *);
+int     my_strcmp(const char *, const char *);
+char	*my_rindex(const char *s, int c);
 
-int	main(int ac, char **av)
+
+
+int	main(void/* int ac, char **av */)
 {
-  printf("%d\n", my_strcmp("alors", "alors"));
-  printf("%d\n", my_strcmp("alor", "alors"));
-  printf("%d\n", my_strcmp("alors", "alor"));
-
-  printf("%d\n", strcmp("alors", "alors"));
-  printf("%d\n", strcmp("alor", "alors"));
-  printf("%d\n", strcmp("alors", "alor"));
+  char *str = my_rindex("abcdefghijklmnopqrstuvwxyz", 'b');
+  if (str)
+    printf("%s\n", str);
   return (0);
 }
