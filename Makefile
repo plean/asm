@@ -2,56 +2,47 @@ NASM		:= nasm
 CC		:= gcc
 RM		:= rm -f
 
+NASMFLAGS	+= -f elf64
+NASMFLAGS	+= -g -F dwarf # debug
 
-NASMFLAGS	+= -f elf64 -g -F dwarf
-
-CFLAGS  	+= -W -Wall -Wextra
-#CFLAGS		+= -lmy
+CFLAGS  	+= -w -Wall -Wextra -fpic
 CFLAGS		+= -I./include/ -L./lib/
+LDFLAGS		+= -shared
 
-NAME		:= test
+NAME		:= libasm.so
 
-SRCS		:= putnbr.asm \
-		putchar.asm \
+SRC		:= $(addprefix src/, \
+		putc.asm \
+		puts.asm \
+		putnbr.asm \
 		strlen.asm \
 		strcmp.asm \
-		rindex.asm
+		strncmp.asm \
+		strcasecmp.asm \
+		rindex.asm \
+		read.asm \
+		write.asm \
+		)
 
 MAIN		:= main.c
 
-OBJS		:= $(SRCS:.asm=.o)
+OBJ		:= $(SRC:.asm=.o)
 
-DEFAULT		:= "\033[00;0m"
-GREEN		:= "\033[0;32;1m"
-RED		:= "\033[0;31;1m"
-CYAN		:= "\033[0;36;1m"
+all: $(NAME)
 
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-		$(CC) $(OBJS) -o $(NAME) $(MAIN) $(CFLAGS)
-		echo $(CYAN)"Done for $(NAME)"$(DEFAULT)
+$(NAME): $(OBJ)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 clean:
-		echo $(CYAN)"Cleaning $(NAME) tmp files..." $(DEFAULT)
-		$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
-fclean:	clean
-		echo $(CYAN)"Cleaning $(NAME) executable..." $(DEFAULT)
-		$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
+	$(RM) $(LIBNAME)
 
 re: fclean all
 
-.c.o:%.c
-	@$(CC) -c $< -o $@ $(CFLAGS)  && \
-		echo $(GREEN)"[OK]"$(DEFAULT) $< || \
-		echo $(RED)"[NOT OK]"$(DEFAULT) $<
-
 %.o: %.asm
-	@$(NASM) $< $(NASMFLAGS) && \
-		echo $(GREEN)"[OK]"$(DEFAULT) $< || \
-		echo $(RED)"[NOT OK]"$(DEFAULT) $<
+	$(NASM) $< $(NASMFLAGS)
 
 .PHONY: all clean fclean re
-
-.SILENT: all $(NAME) clean fclean re

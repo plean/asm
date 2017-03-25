@@ -25,4 +25,3 @@ _upd_val:
 	sub	eax, 256	; ret -= 256
 _return:
 	ret			; return ret
-	

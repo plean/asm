@@ -1,5 +1,5 @@
 	extern	my_strlen
-	global	my_putstr
+	global	my_puts
 	
 my_putstr:
 	call    my_strlen ; will return the size of rd1 (1st parameter) on rax

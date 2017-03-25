@@ -1,6 +1,6 @@
-	global my_putchar	; make label available to linker
+	global my_putc	; make label available to linker
 
-my_putchar:
+my_putc:
 
 	push	rdi		; push rdi (argument 1) on top of the stack
 	mov	rsi, rsp	; rsp is pointing on rdi (1st argument)
