@@ -1,10 +1,20 @@
-	extern	my_strlen
-	global	my_rindex
+	extern  _GLOBAL_OFFSET_TABLE_
+	global	rindex:function
 
-my_rindex:
+_strlen:
+	mov     rax, -1		; set the return value at -1
+
+_strlen_loop:
+	inc     rax	; increment rax
+	cmp     byte [rdi + rax], 0 ; test if rax element of rdi if not equal to 0
+	jne     _strlen_loop	    ; if not loop
+	ret			    ; else return rax
+	
+
+rindex:
 	push	rdi		;
 	push	rsi		;
-	call	my_strlen	; rax = strlen(rdi);
+	call	_strlen		; rax = strlen(rdi);
 	pop	rsi		;
 	pop	rdi		;
 _loop:				; while (rax && r8[rax] != sil)

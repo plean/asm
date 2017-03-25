@@ -1,7 +1,8 @@
-	global my_strncmp
+	extern  _GLOBAL_OFFSET_TABLE_
+	global strncmp:function
 
 
-my_strncmp:			; strncmp(char *s1, char *s2, size_t n)
+strncmp:			; strncmp(char *s1, char *s2, size_t n)
 	;; int i, ret;
 	xor	r8, r8		; i ^= i <=> i = 0
 	xor	rax, rax	; ret ^= ret <=> ret = 0

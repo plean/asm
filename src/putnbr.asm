@@ -1,14 +1,24 @@
-	extern my_putchar
-	global my_putnbr
+	extern  _GLOBAL_OFFSET_TABLE_
+	global putnbr:function
 
-my_putnbr:
+_putc:
+	push	rdi		; push rdi (argument 1) on top of the stack
+	mov	rsi, rsp	; rsp is pointing on rdi (1st argument)
+	mov     rax, 1		; system call 1 is write
+	mov     rdi, 1		; file handle 1 is stdout
+	mov     rdx, 1		; number of bytes to write
+	syscall			; invoke operating system to do the write
+	pop	rdi		; restore the stack
+	ret
+
+putnbr:
 ;;;  if (nb < 0)
 	cmp     edi, 0	; compare di (first argument) and 0
 	jnl     _initialize_rax ; if di below 0 jump to _initalize_rax
 	;;  else
 	push    rdi	; save di
 	mov     edi, '-' ; put '-' on di
-	call    my_putchar ; equivalent my_putchar('-')
+	call    _putc	 ; equivalent putc('-')
 	pop     rdi	; restore di
 	neg     edi	; change the sign of di
 _initialize_rax:
@@ -43,7 +53,8 @@ _aff_number:
 	pop     rdi	; get number to print
 	push    r10	; push nb of bytes red (final return value)
 	push    rax	; save ax
-	call    my_putchar ;
+	call    _putc	;
+	push	rdi
 	pop     rax	; restore ax
 	jmp     _aff_number ; loop
 _return:

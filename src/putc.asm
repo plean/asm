@@ -1,6 +1,7 @@
-	global my_putc	; make label available to linker
+	extern  _GLOBAL_OFFSET_TABLE_
+	global putc:function	; make label available to linker
 
-my_putc:
+putc:
 
 	push	rdi		; push rdi (argument 1) on top of the stack
 	mov	rsi, rsp	; rsp is pointing on rdi (1st argument)

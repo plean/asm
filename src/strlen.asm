@@ -1,6 +1,7 @@
-	global my_strlen		; make label available to linker
+	extern  _GLOBAL_OFFSET_TABLE_
+	global strlen:function		; make label available to linker
 
-my_strlen:
+strlen:
 	mov     rax, -1			; set the return value at -1
 
 loop:

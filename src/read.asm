@@ -1,4 +1,5 @@
-        global read
+	extern  _GLOBAL_OFFSET_TABLE_
+        global read:function
 
 read:
 	mov     rax, 0

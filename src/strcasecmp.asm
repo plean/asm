@@ -1,7 +1,8 @@
-	global my_strcasecmp
+	extern  _GLOBAL_OFFSET_TABLE_
+	global strcasecmp:function
 
 
-my_strcasecmp:			; strcasecmp(char *s1, char *s2)
+strcasecmp:			; strcasecmp(char *s1, char *s2)
 	;; int i, ret;
 	xor	r8, r8		; i ^= i <=> i = 0
 	xor	rax, rax	; ret ^= ret <=> ret = 0
