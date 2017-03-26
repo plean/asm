@@ -18,7 +18,7 @@ SRC		:= $(addprefix src/, \
 		strstr.asm \
 		memset.asm \
 		strncmp.asm \
-		strbrk.asm \
+		strpbrk.asm \
 		memcpy.asm \
 		strcasecmp.asm \
 		strcspn.asm \

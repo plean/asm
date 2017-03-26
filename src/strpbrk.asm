@@ -1,6 +1,6 @@
         extern  _GLOBAL_OFFSET_TABLE_
-	global strbrk:function
+	global strpbrk:function
 
-strbrk:
+strpbrk:
 	xor     rax, rax ;
 	ret	 ;

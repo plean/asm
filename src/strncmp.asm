@@ -12,6 +12,8 @@ _loop:
 	jne	_upd_val	   ; goto _upd_val
 	cmp	byte [rdi + r8], 0 ; if s1[i] == 0
 	je	_upd_val	   ; goto _upd_val
+	cmp	r8, rdx		   ; if i == n
+	je	_upd_val	   ; goto _upd_val
 	inc	r8		   ; i++
 	jmp	_loop
 _upd_val:
