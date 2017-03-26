@@ -16,7 +16,7 @@ rindex:
 strrchr:	
 	call	_strlen		; rax = strlen(rdi);
 _loop:				; while (
-	cmp	byte [rdi + rax], sil ; r8[rax] != sil
+	cmp	byte [rdi + rax], sil ; rdi[rax] != sil
 	je	_found		; &&
 	cmp	rax, 0		; rax)
 	je	_ret		; {
