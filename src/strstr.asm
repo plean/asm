@@ -4,7 +4,7 @@
 strstr:
 	xor	rax, rax		; rax = 0;
 	mov	rcx, [rsi]		; rcx = *rsi;
-_loop:					; 
+_loop:
 	cmp	byte [rdi + rax], cl 	; if rdi[rax] != (char)rcx
 	je	_test_found		;   goto _test_found;
 	cmp	byte [rdi + rax], 0	; if !rdi[rax]
@@ -26,6 +26,8 @@ _loop2:
 	jmp	_loop			; goto _loop;
 _found:
 	add	rax, rdi		; rax += rdi;
+	cmp	byte [rax], 0		; if (char)rax == 0
+	je	_ret			;   goto _ret;
 	ret				; return rax;
 _ret:
 	xor	rax, rax		; rax = 0;
